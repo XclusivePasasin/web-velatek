@@ -1,0 +1,2 @@
+import type { ReactNode } from 'react';
+export function SectionHeading({eyebrow,title,description,center=false}:{eyebrow:string;title:ReactNode;description?:string;center?:boolean}){return <div className={center?'mx-auto max-w-3xl text-center':'max-w-3xl'}><span className="eyebrow">{eyebrow}</span><h2 className="section-heading mt-6">{title}</h2>{description&&<p className="text-muted mt-5 max-w-2xl text-base leading-8 md:text-lg">{description}</p>}</div>}
