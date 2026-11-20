@@ -1,0 +1,10 @@
+import Link from 'next/link';
+import { ArrowUpRight, Boxes, Code2, FileCheck2, Workflow, Mail, type LucideIcon } from 'lucide-react';
+export const solutions: {title:string;description:string;href:string;icon:LucideIcon;label:string}[]=[
+{title:'Odoo ERP',description:'Unifica ventas, inventario, compras, contabilidad y operaciones en una plataforma conectada.',href:'/soluciones/odoo',icon:Boxes,label:'Gestión empresarial'},
+{title:'Facturación electrónica',description:'Integra la emisión y gestión de DTE en El Salvador con tus procesos empresariales.',href:'/soluciones/facturacion-electronica',icon:FileCheck2,label:'El Salvador'},
+{title:'Software a medida',description:'Desarrollamos herramientas que responden a necesidades reales de tu operación.',href:'/soluciones/desarrollo-software',icon:Code2,label:'Ingeniería'},
+{title:'Google Workspace',description:'Conecta a tu equipo con herramientas profesionales de comunicación y colaboración.',href:'/soluciones/google-workspace',icon:Mail,label:'Productividad'},
+{title:'Automatización e integraciones',description:'Conecta plataformas, reduce procesos manuales y mejora el flujo de información.',href:'/soluciones/automatizacion',icon:Workflow,label:'Integraciones'}
+];
+export function SolutionsGrid(){return <div className="mt-14 grid gap-4 md:grid-cols-6">{solutions.map((s,i)=><Link href={s.href} key={s.href} className={'panel card-hover group relative min-h-[265px] overflow-hidden p-8 '+(i<2?'md:col-span-3':'md:col-span-2')}><div className="absolute -right-20 -top-28 h-56 w-56 rounded-full bg-lime-300/5 blur-3xl transition group-hover:bg-lime-300/10"/><div className="flex items-center justify-between"><span className="rounded-xl border border-lime-300/20 bg-lime-300/10 p-3 text-lime-300"><s.icon size={25}/></span><ArrowUpRight className="text-[#7f9480] transition group-hover:text-lime-300" size={21}/></div><p className="mt-9 text-[11px] font-semibold uppercase tracking-[.15em] text-lime-300">{s.label}</p><h3 className="mt-2 text-2xl font-bold tracking-tight">{s.title}</h3><p className="text-muted mt-3 max-w-md text-sm leading-7">{s.description}</p></Link>)}</div>}
