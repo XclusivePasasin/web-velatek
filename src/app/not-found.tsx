@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function NotFound(){return <section className="container flex min-h-[65vh] flex-col items-center justify-center text-center"><span className="eyebrow">Error 404</span><h1 className="section-heading mt-5">No encontramos esta página.</h1><p className="text-muted mt-5">La dirección solicitada no existe o cambió.</p><Link className="button-primary mt-8" href="/">Volver al inicio</Link></section>}
