@@ -3,18 +3,12 @@ import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import { SolutionsGrid } from '@/components/solutions';
 import { FeatureSections } from '@/components/feature-sections';
 
-function WorkflowVisual() {
-  const steps = [
-    ['01', 'Ventas', 'Pedidos y clientes', 'CAPTURA'],
-    ['02', 'Operación', 'Inventario y compras', 'GESTIONA'],
-    ['03', 'Administración', 'Contabilidad y DTE', 'CONTROLA'],
-  ];
-  return <div className="workflow-visual" role="img" aria-label="Esquema conceptual de procesos empresariales conectados">
-    <div className="workflow-caption"><span>Una operación conectada</span><small>Esquema conceptual</small></div>
-    <div className="workflow-list">{steps.map(([number, name, detail, tag]) => <div className="workflow-row" key={number}>
-      <span className="workflow-index">{number}</span><div><div className="workflow-name">{name}</div><div className="workflow-detail">{detail}</div></div><span className="workflow-tag">{tag}</span>
-    </div>)}</div>
-    <div className="workflow-note"><Check size={14} aria-hidden="true"/> Odoo · Integraciones · Procesos a medida</div>
+function OdooVisual() {
+  const modules = ['CRM', 'Ventas', 'Inventario', 'Compras', 'Contabilidad', 'DTE'];
+  return <div className="odoo-visual" role="img" aria-label="Vista conceptual de módulos empresariales integrados en Odoo">
+    <div className="odoo-visual-head"><span className="odoo-visual-title">Odoo · Sistema conectado</span><span className="odoo-visual-label">Vista conceptual</span></div>
+    <div className="odoo-module-grid">{modules.map((module, index) => <div className="odoo-module" key={module}><span className="odoo-module-symbol">{['C','V','I','P','C','D'][index]}</span><div className="odoo-module-name">{module}</div></div>)}</div>
+    <div className="odoo-visual-foot"><span><i className="odoo-status"/> Procesos conectados</span><span>Implementación · Migración · Desarrollo</span></div>
   </div>;
 }
 
@@ -24,23 +18,23 @@ export default function Home() {
       <div className="container hero-grid">
         <div>
           <span className="eyebrow">Partner oficial de Odoo · El Salvador</span>
-          <h1 className="hero-title">Tecnología que conecta y hace avanzar <em>tu empresa.</em></h1>
-          <p className="hero-description">Implementamos Odoo, integramos tus sistemas y desarrollamos software para que los procesos de tu negocio trabajen en conjunto.</p>
+          <h1 className="hero-title">Odoo y tecnología para hacer avanzar <em>tu empresa.</em></h1>
+          <p className="hero-description">Implementamos y migramos Odoo, desarrollamos soluciones a medida e integramos facturación electrónica para conectar la operación de tu negocio.</p>
           <div className="hero-actions">
             <Link className="button-primary" href="/contacto">Solicitar una asesoría <ArrowUpRight size={17}/></Link>
             <Link className="button-secondary" href="/soluciones">Conocer soluciones <ArrowRight size={16}/></Link>
           </div>
-          <div className="hero-proof"><span><i/> Odoo empresarial</span><span><i/> Automatización</span><span><i/> Desarrollo e integraciones</span></div>
+          <div className="hero-proof"><span><i/> Implementación y migración Odoo</span><span><i/> Desarrollos a medida</span><span><i/> Facturación electrónica</span></div>
         </div>
-        <WorkflowVisual/>
+        <OdooVisual/>
       </div>
     </section>
     <section className="section section-dark">
       <div className="container service-layout">
         <div className="service-lead">
-          <span className="section-label">Qué hacemos</span>
-          <h2 className="section-heading">Tecnología con sentido para el trabajo real.</h2>
-          <p className="section-copy">Alineamos herramientas, información y procesos con las necesidades de cada empresa.</p>
+          <span className="section-label">Especialistas en Odoo</span>
+          <h2 className="section-heading">Un ERP que se adapta a tu forma de operar.</h2>
+          <p className="section-copy">Acompañamos cada etapa: desde la implementación inicial y la migración de datos hasta las extensiones e integraciones que necesita tu empresa.</p>
         </div>
         <SolutionsGrid/>
       </div>
@@ -48,7 +42,7 @@ export default function Home() {
     <FeatureSections/>
     <section className="section">
       <div className="container contact-band">
-        <div><h2>Conversemos sobre lo que tu empresa necesita.</h2><p>Cuéntanos el reto operativo o tecnológico que quieres resolver y exploremos el siguiente paso.</p></div>
+        <div><h2>Conversemos sobre tu proyecto Odoo.</h2><p>Cuéntanos si buscas implementar, migrar, desarrollar una función a medida o integrar facturación electrónica.</p></div>
         <Link href="/contacto" className="button-primary">Hablemos <ArrowRight size={16}/></Link>
       </div>
     </section>
