@@ -1,3 +1,13 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-export function Footer(){return <footer className="border-t border-white/10 bg-[#0b100c]"><div className="container grid gap-12 py-16 md:grid-cols-3"><div><Link className="text-xl font-black tracking-[.13em]" href="/">VELATEK<span className="text-[#72C261]">.</span></Link><p className="mt-5 max-w-xs text-sm leading-7 text-[#a6afa8]">Ingeniería de software y soluciones empresariales creadas para impulsar lo que sigue.</p></div><div><p className="mb-5 text-sm font-bold">Explora</p><div className="flex flex-col gap-3 text-sm text-[#a6afa8]"><Link href="/soluciones">Soluciones</Link><Link href="/nosotros">Nosotros</Link><Link href="/contacto">Contacto</Link></div></div><div><p className="mb-5 text-sm font-bold">Tu próxima gran idea empieza aquí</p><Link href="/contacto" className="inline-flex items-center gap-2 text-sm text-[#72C261]">Conversemos sobre tu proyecto <ArrowUpRight size={16}/></Link></div></div><div className="container flex flex-wrap items-center justify-between gap-3 border-t border-white/10 py-6 text-xs text-[#849084]"><span>© {new Date().getFullYear()} VELATEK. Todos los derechos reservados.</span><span>Hecho para impulsar empresas.</span></div></footer>}
+
+export function Footer() {
+  return <footer className="site-footer">
+    <div className="container footer-grid">
+      <div><Link className="flex items-center gap-3 text-[14px] font-bold tracking-[.16em]" href="/"><span className="brand-mark">V</span>VELATEK</Link><p className="mt-5 max-w-sm text-xs leading-7 text-[#aeb8ac]">Tecnología empresarial, implementación de Odoo y desarrollo de soluciones para empresas en El Salvador.</p></div>
+      <div><p className="footer-title">Explora</p><div className="footer-links"><Link href="/soluciones">Soluciones</Link><Link href="/nosotros">Nosotros</Link><Link href="/contacto">Contacto</Link></div></div>
+      <div><p className="footer-title">Hablemos de tu operación</p><Link href="/contacto" className="mt-4 inline-flex items-center gap-2 text-xs text-[#b5ca96]">Solicitar una asesoría <ArrowUpRight size={15}/></Link></div>
+    </div>
+    <div className="container footer-bottom"><span>© {new Date().getFullYear()} VELATEK. Todos los derechos reservados.</span><span>Partner oficial de Odoo</span></div>
+  </footer>;
+}
