@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowDown, ArrowRight, ArrowUpRight, Check } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import { SolutionsGrid } from '@/components/solutions';
 import { FeatureSections } from '@/components/feature-sections';
 
@@ -9,7 +9,7 @@ function WorkflowVisual() {
     ['02', 'Operación', 'Inventario y compras', 'GESTIONA'],
     ['03', 'Administración', 'Contabilidad y DTE', 'CONTROLA'],
   ];
-  return <div className="workflow-visual" aria-label="Esquema conceptual de procesos empresariales conectados">
+  return <div className="workflow-visual" role="img" aria-label="Esquema conceptual de procesos empresariales conectados">
     <div className="workflow-caption"><span>Una operación conectada</span><small>Esquema conceptual</small></div>
     <div className="workflow-list">{steps.map(([number, name, detail, tag]) => <div className="workflow-row" key={number}>
       <span className="workflow-index">{number}</span><div><div className="workflow-name">{name}</div><div className="workflow-detail">{detail}</div></div><span className="workflow-tag">{tag}</span>
