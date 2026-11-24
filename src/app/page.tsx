@@ -2,15 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
 import { SolutionsGrid } from '@/components/solutions';
 import { FeatureSections } from '@/components/feature-sections';
-
-function OdooVisual() {
-  const modules = ['CRM', 'Ventas', 'Inventario', 'Compras', 'Contabilidad', 'DTE'];
-  return <div className="odoo-visual" role="img" aria-label="Vista conceptual de módulos empresariales integrados en Odoo">
-    <div className="odoo-visual-head"><span className="odoo-visual-title">Odoo · Sistema conectado</span><span className="odoo-visual-label">Vista conceptual</span></div>
-    <div className="odoo-module-grid">{modules.map((module, index) => <div className="odoo-module" key={module}><span className="odoo-module-symbol">{['C','V','I','P','C','D'][index]}</span><div className="odoo-module-name">{module}</div></div>)}</div>
-    <div className="odoo-visual-foot"><span><i className="odoo-status"/> Procesos conectados</span><span>Implementación · Migración · Desarrollo</span></div>
-  </div>;
-}
+import { OdooAppExplorer } from '@/components/odoo-app-explorer';
 
 export default function Home() {
   return <>
@@ -26,7 +18,7 @@ export default function Home() {
           </div>
           <div className="hero-proof"><span><i/> Implementación y migración Odoo</span><span><i/> Desarrollos a medida</span><span><i/> Facturación electrónica</span></div>
         </div>
-        <OdooVisual/>
+        <OdooAppExplorer/>
       </div>
     </section>
     <section className="section section-dark">
