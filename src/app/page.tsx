@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SolutionsGrid } from '@/components/solutions';
 import { FeatureSections } from '@/components/feature-sections';
 import { OdooAppExplorer } from '@/components/odoo-app-explorer';
