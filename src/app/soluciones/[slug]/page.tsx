@@ -25,10 +25,10 @@ export default async function SolutionDetail({ params }: { params: Promise<{ slu
   const solution = solutions.find(item => item.href.endsWith('/' + slug));
   if (!detail || !solution) notFound();
   return <section className="page-hero"><div className="container">
-    <Link href="/soluciones" className="mb-10 inline-flex items-center gap-2 text-sm text-[#c2b8c3] hover:text-white"><ArrowLeft size={16}/> Volver a especialidades</Link>
+    <Link href="/soluciones" className="mb-10 inline-flex items-center gap-2 text-sm text-[#586158] hover:text-white"><ArrowLeft size={16}/> Volver a especialidades</Link>
     <div className="grid items-start gap-12 lg:grid-cols-2">
       <div><span className="eyebrow">{solution.label}</span><h1 className="hero-title !text-[clamp(2.8rem,5.4vw,5.2rem)]">{detail.heading}</h1><p className="hero-description">{detail.intro}</p><Link href="/contacto" className="button-primary mt-8">Solicitar asesoría <ArrowUpRight size={16}/></Link></div>
-      <div className="border border-[#544653] bg-[#211b24] p-7 sm:p-9"><span className="section-label">Alcance posible</span><h2 className="mt-4 font-serif text-2xl">Una solución para tu operación</h2><ul className="mt-7 space-y-4">{detail.points.map(point => <li className="flex items-start gap-3 text-sm leading-6 text-[#e0d5e0]" key={point}><CheckCircle2 className="mt-1 shrink-0 text-[#3b9a9d]" size={17}/>{point}</li>)}</ul></div>
+      <div className="border border-[#dce4da] bg-white p-7 sm:p-9"><span className="section-label">Alcance posible</span><h2 className="mt-4 font-serif text-2xl">Una solución para tu operación</h2><ul className="mt-7 space-y-4">{detail.points.map(point => <li className="flex items-start gap-3 text-sm leading-6 text-[#303a31]" key={point}><CheckCircle2 className="mt-1 shrink-0 text-[#286f2c]" size={17}/>{point}</li>)}</ul></div>
     </div>
   </div></section>;
 }

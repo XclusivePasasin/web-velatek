@@ -1,0 +1,13 @@
+'use client';
+import {createContext,useContext,useId,useState,type ButtonHTMLAttributes,type HTMLAttributes,type KeyboardEvent,type ReactNode} from 'react';
+import {cn} from '@/lib/utils';
+interface State{id:string;value:string;setValue:(v:string)=>void}
+const Ctx=createContext<State|null>(null);function useTabs(){const c=useContext(Ctx);if(!c)throw new Error('Tabs components must be rendered inside <Tabs>.');return c}
+const key=(v:string)=>v.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+interface RootProps{value?:string;defaultValue?:string;onValueChange?:(v:string)=>void;className?:string;children:ReactNode}
+export function Tabs({value,defaultValue='',onValueChange,className,children}:RootProps){const[i,setI]=useState(defaultValue);const id=useId();const selected=value??i;const setValue=(v:string)=>{if(value===undefined)setI(v);onValueChange?.(v)};return <Ctx.Provider value={{id,value:selected,setValue}}><div className={cn('ui-tabs',className)}>{children}</div></Ctx.Provider>}
+export function TabsList({className,...props}:HTMLAttributes<HTMLDivElement>){return <div role="tablist" className={cn('ui-tabs-list',className)} {...props}/>}
+interface TriggerProps extends ButtonHTMLAttributes<HTMLButtonElement>{value:string}
+export function TabsTrigger({value,className,onClick,onKeyDown,...props}:TriggerProps){const c=useTabs();const active=c.value===value;const keyDown=(e:KeyboardEvent<HTMLButtonElement>)=>{onKeyDown?.(e);if(e.defaultPrevented||!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();const list=e.currentTarget.closest('[role="tablist"]');const tabs=Array.from(list?.querySelectorAll<HTMLButtonElement>('[role="tab"]:not(:disabled)')??[]);const n=tabs.indexOf(e.currentTarget);const ix=e.key==='Home'?0:e.key==='End'?tabs.length-1:(n+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;tabs[ix]?.focus();tabs[ix]?.click()};return <button id={`${c.id}-tab-${key(value)}`} type="button" role="tab" aria-selected={active} aria-controls={`${c.id}-panel-${key(value)}`} tabIndex={active?0:-1} data-state={active?'active':'inactive'} className={cn('ui-tabs-trigger',className)} onClick={e=>{onClick?.(e);if(!e.defaultPrevented)c.setValue(value)}} onKeyDown={keyDown} {...props}/>}
+interface ContentProps extends HTMLAttributes<HTMLDivElement>{value:string}
+export function TabsContent({value,className,...props}:ContentProps){const c=useTabs();const active=c.value===value;return <div id={`${c.id}-panel-${key(value)}`} role="tabpanel" aria-labelledby={`${c.id}-tab-${key(value)}`} tabIndex={0} hidden={!active} data-state={active?'active':'inactive'} className={cn('ui-tabs-content',className)} {...props}/>}

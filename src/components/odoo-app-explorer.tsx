@@ -1,42 +1,27 @@
 'use client';
-
 import Image from 'next/image';
 import { useState } from 'react';
-
-const apps = [
-  { id: 'crm', name: 'CRM', category: 'Comercial', icon: '/images/odoo/apps/crm.png', description: 'Organiza oportunidades, actividades y seguimiento comercial en un flujo compartido.' },
-  { id: 'sale', name: 'Ventas', category: 'Comercial', icon: '/images/odoo/apps/sale.png', description: 'Conecta cotizaciones y pedidos con inventario, facturación y operación.' },
-  { id: 'stock', name: 'Inventario', category: 'Operación', icon: '/images/odoo/apps/stock.png', description: 'Gestiona existencias, movimientos y abastecimiento dentro del ERP.' },
-  { id: 'purchase', name: 'Compras', category: 'Operación', icon: '/images/odoo/apps/purchase.png', description: 'Relaciona solicitudes, órdenes de compra y recepción de productos.' },
-  { id: 'account', name: 'Contabilidad', category: 'Finanzas', icon: '/images/odoo/apps/account.png', description: 'Centraliza facturas y registros contables; la emisión de DTE se integra según el alcance del proyecto.' },
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+const applications=[
+{id:'crm',name:'CRM',category:'Comercial',icon:'/images/odoo/apps/crm.png',description:'Organiza oportunidades, actividades y seguimiento comercial.'},
+{id:'sale',name:'Ventas',category:'Comercial',icon:'/images/odoo/apps/sale.png',description:'Conecta cotizaciones y pedidos con inventario y facturación.'},
+{id:'stock',name:'Inventario',category:'Operación',icon:'/images/odoo/apps/stock.png',description:'Gestiona existencias, movimientos y abastecimiento desde el ERP.'},
+{id:'purchase',name:'Compras',category:'Operación',icon:'/images/odoo/apps/purchase.png',description:'Relaciona órdenes de compra, recepción y control de proveedores.'},
+{id:'account',name:'Contabilidad',category:'Finanzas',icon:'/images/odoo/apps/account.png',description:'Centraliza facturas y registros contables. La emisión de DTE se integra según el alcance del proyecto.'},
 ] as const;
-
-const filters = ['Todas', 'Comercial', 'Operación', 'Finanzas'] as const;
-
-export function OdooAppExplorer() {
-  const [filter, setFilter] = useState<(typeof filters)[number]>('Todas');
-  const [activeId, setActiveId] = useState<string>('crm');
-  const visibleApps = filter === 'Todas' ? apps : apps.filter(app => app.category === filter);
-  const activeApp = visibleApps.find(app => app.id === activeId) ?? visibleApps[0];
-
-  return <section className="odoo-explorer" aria-label="Explora aplicaciones de Odoo">
-    <div className="odoo-explorer-heading"><span className="odoo-explorer-title">Aplicaciones empresariales</span><span className="odoo-explorer-note">Vista interactiva</span></div>
-    <div className="odoo-explorer-filters" aria-label="Filtrar aplicaciones">
-      {filters.map(item => <button key={item} type="button" className="odoo-filter" aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}</button>)}
-    </div>
-    <div className="odoo-explorer-body">
-      <div className="odoo-app-grid" aria-label="Aplicaciones disponibles">
-        {visibleApps.map(app => <button key={app.id} type="button" className="odoo-app-option" aria-pressed={activeApp.id === app.id} onClick={() => setActiveId(app.id)}>
-          <Image src={app.icon} alt="" width={52} height={52} className="odoo-app-icon"/>
-          <span className="odoo-app-name">{app.name}</span>
-        </button>)}
-      </div>
-      <article className="odoo-app-detail" aria-live="polite">
-        <Image src={activeApp.icon} alt="" width={52} height={52}/>
-        <h3>{activeApp.name}</h3>
-        <p>{activeApp.description}</p>
-        <small>{activeApp.category} · Aplicación de Odoo</small>
-      </article>
-    </div>
-  </section>;
+const categories=['Todas','Comercial','Operación','Finanzas'] as const;
+type Category=(typeof categories)[number];
+export function OdooAppExplorer(){
+ const[category,setCategory]=useState<Category>('Todas');const[activeId,setActiveId]=useState('crm');
+ return <Card className="odoo-explorer"><CardHeader className="odoo-explorer-header"><div><CardTitle>Aplicaciones Odoo</CardTitle><CardDescription>Selecciona un área para explorar sus módulos.</CardDescription></div><Badge variant="outline">Interactivo</Badge></CardHeader>
+ <CardContent className="odoo-explorer-content"><Tabs value={category} onValueChange={v=>setCategory(v as Category)}>
+ <TabsList aria-label="Filtrar aplicaciones Odoo" className="odoo-tabs-list">{categories.map(c=><TabsTrigger key={c} value={c}>{c}</TabsTrigger>)}</TabsList>
+ {categories.map(c=>{const items=c==='Todas'?applications:applications.filter(a=>a.category===c);const selected=items.find(a=>a.id===activeId)??items[0];
+ return <TabsContent key={c} value={c} className="odoo-tabs-panel"><div className="odoo-app-picker">
+ <div className="odoo-app-grid" aria-label="Aplicaciones disponibles">{items.map(app=><Button key={app.id} variant="app" aria-pressed={selected.id===app.id} className="odoo-app-option" onClick={()=>setActiveId(app.id)}><Image src={app.icon} alt="" width={48} height={48} className="odoo-app-icon"/><span>{app.name}</span></Button>)}</div>
+ <Card className="odoo-app-detail" aria-live="polite"><CardContent className="odoo-app-detail-content"><Image src={selected.icon} alt="" width={58} height={58} className="odoo-app-detail-icon"/><Badge variant="secondary" className="odoo-standard-badge">Aplicación estándar</Badge><CardTitle>{selected.name}</CardTitle><CardDescription>{selected.description}</CardDescription><span className="odoo-category">{selected.category} · Odoo</span></CardContent></Card>
+ </div></TabsContent>})}</Tabs></CardContent></Card>;
 }

@@ -15,7 +15,7 @@ export default function About() {
     <span className="eyebrow">Odoo y tecnología empresarial</span>
     <h1 className="hero-title max-w-5xl">Acompañamos la evolución de <em>tu sistema.</em></h1>
     <p className="hero-description max-w-3xl">VELATEK es una empresa tecnológica enfocada en Odoo, migraciones, desarrollos a medida y facturación electrónica. Unimos conocimiento de procesos e ingeniería para que las soluciones se ajusten a la realidad de cada empresa.</p>
-    <div className="about-band mt-16"><p className="about-statement">Implementar. Migrar. Desarrollar. Integrar. Con Odoo como base de una operación conectada.</p><div className="grid gap-7 sm:grid-cols-3 lg:grid-cols-1">{principles.map(item => <article className="flex gap-4 border-b border-[#453b49] pb-5" key={item.title}><item.icon className="shrink-0 text-[#c7a9c3]" size={22}/><div><h2 className="text-sm font-semibold">{item.title}</h2><p className="mt-2 text-xs leading-6 text-[#c2b8c3]">{item.text}</p></div></article>)}</div></div>
+    <div className="about-band mt-16"><p className="about-statement">Implementar. Migrar. Desarrollar. Integrar. Con Odoo como base de una operación conectada.</p><div className="grid gap-7 sm:grid-cols-3 lg:grid-cols-1">{principles.map(item => <article className="flex gap-4 border-b border-[#dce4da] pb-5" key={item.title}><item.icon className="shrink-0 text-[#286f2c]" size={22}/><div><h2 className="text-sm font-semibold">{item.title}</h2><p className="mt-2 text-xs leading-6 text-[#586158]">{item.text}</p></div></article>)}</div></div>
     <Link href="/contacto" className="button-primary mt-10">Conversemos sobre Odoo <ArrowUpRight size={16}/></Link>
   </div></section>;
 }
